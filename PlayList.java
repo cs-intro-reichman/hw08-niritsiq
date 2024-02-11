@@ -41,9 +41,9 @@ class PlayList {
     public boolean add(Track track) {
         //// replace the following statement with your code
 
-        if (this.maxSize > this.size) {
-            this.size++;
-            this.tracks[this.size - 1] = track;
+        if (maxSize > size) {
+            size++;
+            tracks[size - 1] = track;
             return true;
         }
         return false;
@@ -72,7 +72,6 @@ class PlayList {
         //// replace this comment with your code
         if (this.size == 0)
             return;
-        this.tracks[this.size - 1] = null;
         this.size--;
     }
 
@@ -93,9 +92,9 @@ class PlayList {
     public int indexOf(String title) {
         //// replace the following statement with your code
         for (int i = 0; i < this.size; i++) {
-            this.tracks[i].getTitle().toLowerCase();
+            String str = this.tracks[i].getTitle().toLowerCase();
             title = title.toLowerCase();
-            if (this.tracks[i].getTitle().equals(title))
+            if (str.equals(title))
                 return i;
         }
         return -1;
@@ -111,21 +110,17 @@ class PlayList {
      */
     public boolean add(int i, Track track) {
         //// replace the following statement with your code
-        if (i < 0 || i > this.maxSize || this.size == this.maxSize)
+        if (i < 0 || i > this.maxSize || this.size >= this.maxSize)
             return false;
-        else if (i == this.size) {
-            this.tracks[i] = track;
-            return true;
-        } else {
+        else if (this.size < this.maxSize) {
+            for (int j = this.size; j > i; j--) {
+                tracks[j] = tracks[j - 1];
 
-            for (int k = i + 1; k < this.size; k++) {
-                temp = this.tracks[k];
-                this.tracks[k + 1] = temp;
             }
-
+            tracks[i] = track;
             return true;
-
         }
+        return false;
     }
 
     /**
