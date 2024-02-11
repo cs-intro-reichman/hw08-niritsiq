@@ -197,7 +197,7 @@ class PlayList {
                 minIndex = i;
         }
 
-        return index;
+        return minIndex;
 
     }
 
