@@ -110,7 +110,9 @@ class PlayList {
      */
     public boolean add(int i, Track track) {
         //// replace the following statement with your code
-        if (this.size < this.maxSize) {
+        if (i < 0 || i > this.maxSize || this.size >= this.maxSize)
+            return false;
+        else if (this.size < this.maxSize) {
             for (int j = this.size; j > i; j--) {
                 tracks[j] = tracks[j - 1];
 
@@ -170,8 +172,8 @@ class PlayList {
     public void add(PlayList other) {
         //// replace this comment with your code
         if (other.getSize() + this.size < this.maxSize) {
-            for (int i = this.size; i < this.size + other.getSize(); i++) {
-                this.tracks[i] = other.tracks[i];
+            for (int i = 0; i < other.getSize(); i++) {
+                this.tracks[i + this.size] = other.tracks[i];
             }
             this.size += other.getSize();
 
