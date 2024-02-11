@@ -57,18 +57,12 @@ class PlayList {
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
         //// replace the following statement with your code
-        // StringBuilder str = new StringBuilder();
-        // for (int i = 0; i < this.size; i++) {
-        // str.append(this.tracks[i].toString());
-        // str.append(System.lineSeparator());
-        // }
-        // return str.toString();
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (int i = 0; i < this.size; i++) {
-            str += "/n" + this.tracks[i].getArtist() + ", " + this.tracks[i].getTitle() + ", "
-                    + String.valueOf(tracks[i].getDuration());
+            str.append(this.tracks[i].toString());
+            str.append(System.lineSeparator());
         }
-        return str;
+        return str.toString();
     }
 
     /**
@@ -116,9 +110,7 @@ class PlayList {
      */
     public boolean add(int i, Track track) {
         //// replace the following statement with your code
-        if (i < 0 || i > this.maxSize || this.size >= this.maxSize)
-            return false;
-        else if (this.size < this.maxSize) {
+        if (this.size < this.maxSize) {
             for (int j = this.size; j > i; j--) {
                 tracks[j] = tracks[j - 1];
 
