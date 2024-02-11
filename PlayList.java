@@ -57,12 +57,18 @@ class PlayList {
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
         //// replace the following statement with your code
-        StringBuilder str = new StringBuilder();
+        // StringBuilder str = new StringBuilder();
+        // for (int i = 0; i < this.size; i++) {
+        // str.append(this.tracks[i].toString());
+        // str.append(System.lineSeparator());
+        // }
+        // return str.toString();
+        String str = "";
         for (int i = 0; i < this.size; i++) {
-            str.append(this.tracks[i].toString());
-            str.append(System.lineSeparator());
+            str += "/n" + this.tracks[i].getArtist() + ", " + this.tracks[i].getTitle() + ", "
+                    + String.valueOf(tracks[i].getDuration());
         }
-        return str.toString();
+        return str;
     }
 
     /**
