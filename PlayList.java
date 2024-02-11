@@ -172,8 +172,8 @@ class PlayList {
     public void add(PlayList other) {
         //// replace this comment with your code
         if (other.getSize() + this.size < this.maxSize) {
-            for (int i = 0; i < other.getSize(); i++) {
-                this.tracks[i + this.size] = other.tracks[i];
+            for (int i = this.size; i < this.size + other.getSize(); i++) {
+                this.tracks[i] = other.tracks[i];
             }
             this.size += other.getSize();
 
@@ -222,8 +222,9 @@ class PlayList {
         for (int i = 0; i < this.size; i++) {
             int min = minIndex(i);
             Track newTrack = this.tracks[min];
-            remove(min);
+
             add(i, newTrack);
+            remove(min);
         }
     }
 }
