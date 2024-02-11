@@ -92,10 +92,9 @@ class PlayList {
     public int indexOf(String title) {
         //// replace the following statement with your code
         for (int i = 0; i < this.size; i++) {
-            String str = this.tracks[i].getTitle().toLowerCase();
-            title = title.toLowerCase();
-            if (str.equals(title))
+            if (this.tracks[i].getTitle().toLowerCase().equals(title.toLowerCase())) {
                 return i;
+            }
         }
         return -1;
     }
@@ -110,17 +109,20 @@ class PlayList {
      */
     public boolean add(int i, Track track) {
         //// replace the following statement with your code
-        if (i < 0 || i > this.maxSize || this.size >= this.maxSize)
+        if (i < 0 || i > this.maxSize || this.size == this.maxSize)
             return false;
-        else if (this.size < this.maxSize) {
-            for (int j = this.size; j > i; j--) {
+        else if (this.size == 0) {
+            this.tracks[this.size] = track;
+            this.size++;
+            return true;
+        } else {
+            for (int j = this.size; j > i; j--)
                 tracks[j] = tracks[j - 1];
 
-            }
             tracks[i] = track;
+            this.size++;
             return true;
         }
-        return false;
     }
 
     /**
@@ -222,9 +224,9 @@ class PlayList {
         for (int i = 0; i < this.size; i++) {
             int min = minIndex(i);
             Track newTrack = this.tracks[min];
-
-            add(i, newTrack);
             remove(min);
+            add(i, newTrack);
+
         }
     }
 }
